@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Jude Collective</title>
+    <script src="https://js.stripe.com/v3"></script>
+
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+            font-family: "Arial";
+        }
+        .project_list {
+            padding-top: 50px;
+            background: #EEEEEE;
+        }
+        .project_list ul {
+            position: absolute;
+            width: 50px;
+        }
+        #header {position: absolute; width: 100%; top: 20%; text-align:center;}
+        #header img {width: 30%; margin-bottom: -5px;}
+        h1 {color: #000;  font-size: 3em; text-align:center;}
+        h3 { color: #000; absolute; text-align:center; font-size: 1.7em;}
+
+    </style>
+</head>
+<body>
+  <div id="header">
+    <h1>hello</h3>
+  </div>
+
+<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+<button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+  id="checkout-button-sku_FRi8q63YAFSl8P"
+  role="link"
+>
+  Checkout
+</button>
+
+<div id="error-message"></div>
+
+<script>
+  var stripe = Stripe('pk_live_COhm8AR5p1RL2alylV066iW500e5XxrPdb');
+
+  var checkoutButton = document.getElementById('checkout-button-sku_FRi8q63YAFSl8P');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{sku: 'sku_FRi8q63YAFSl8P', quantity: 1}],
+
+      // Do not rely on the redirect to the successUrl for fulfilling
+      // purchases, customers may not always reach the success_url after
+      // a successful payment.
+      // Instead use one of the strategies described in
+      // https://stripe.com/docs/payments/checkout/fulfillment
+      successUrl: 'https://ipo.angeline-meitzler.com/',
+      cancelUrl: 'https://ipo.angeline-meitzler.com/',
+      billingAddressCollection: 'required',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
