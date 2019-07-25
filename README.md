@@ -12,6 +12,6 @@ Third round?
 - https://ipo.angeline-meitzler.com
 
 #API
-- built using Flask
+- built using nodeJS
 - hosted on heroku https://ipo-paintings.herokuapp.com/media
 - primarily serves as a temporary solution to dealing with stripe documentation
