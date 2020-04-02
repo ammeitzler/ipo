@@ -14,7 +14,7 @@ Third round?
 #Frontend v2
 - built using ReactJS
 - incorporated with paypal API for payment services
-- https://initialpublicofferring.today
+- http://initialpublicofferring.today
 
 #API
 - built using nodeJS
